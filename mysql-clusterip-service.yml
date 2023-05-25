@@ -5,8 +5,8 @@ metadata:
 spec:
   selector:
     app: wordpress
-    tier: frontend
+    tier: mysql
   type: ClusterIP
   ports:
-  - protocol: TCP
+  - targetPort: 3306
     port: 3306

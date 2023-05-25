@@ -3,9 +3,14 @@ kind: Deployment
 metadata:
   name: mysql-deployment
   labels:
-    app: wordpress
+    app: mysql
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: wordpress
@@ -18,12 +23,12 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:latest
+        image: mysql
         env:
         - name: MYSQL_USER
-          value: eazy
+          value: admin
         - name: MYSQL_PASSWORD
-          value: eazy
+          value: password
         - name: MYSQL_DATABASE
           value: eazytraining
         - name: MYSQL_ROOT_PASSWORD
